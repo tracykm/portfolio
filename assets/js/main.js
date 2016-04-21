@@ -62,6 +62,7 @@
 					offset: $header.outerHeight()
 				});
 
+
 		// Menu.
 			$('#menu')
 				.append('<a href="#menu" class="close"></a>')
@@ -110,8 +111,13 @@ function handleResize(event){
   turnTowards(0)
 }
 
+var firstScroll = true;
+
 function handleScroll(event){
-	turnTowards(window.innerWidth/2 + 50)
+	if(firstScroll){
+		turnTowards(window.innerWidth/2 + 50)
+		firstScroll = false;
+	}
 }
 
 var lastFrame = 0;
@@ -123,35 +129,41 @@ function turnTowards(xPos){
   var percentWidth =  xPos / window.innerWidth
 
   targetFrame = Math.floor(TOTAL_FRAMES * percentWidth);
-
-	moveTowards(targetFrame)
+	if(!isMoving){
+		moveUntilAt(targetFrame)
+	}
 }
 
-function moveTowards(curTarget){
-	if (lastFrame === curTarget || curTarget !== targetFrame) {
+var isMoving = false;
+
+function moveUntilAt(curTarget){
+	if (lastFrame === curTarget) {
+		isMoving = false;
 		return
-	}else{
-		if(lastFrame < curTarget){
-			lastFrame++
-		}else if(lastFrame > curTarget){
-			lastFrame--
-		}
-
-		var offset = getOffSet({
-				'rows': 5,
-				'columns':3,
-				'width':window.innerWidth * 3,
-				'height':window.innerWidth * ASPECTRATIO * 5
-			}, lastFrame);
-
-		// negative to move them so up and to the left so you can still see the img
-		document.getElementById("turningSprite").style.left = offset[0]*-1 +"px";
-		document.getElementById("turningSprite").style.top = offset[1]*-1 +"px";
-
-		setTimeout(function(){
-			moveTowards(targetFrame);
-		}, 500)
 	}
+	if(lastFrame < curTarget){
+		lastFrame++
+	}else if(lastFrame > curTarget){
+		lastFrame--
+	}
+
+	isMoving = true;
+
+	var offset = getOffSet({
+			'rows': 5,
+			'columns':3,
+			'width':window.innerWidth * 3,
+			'height':window.innerWidth * ASPECTRATIO * 5
+		}, lastFrame);
+
+	// negative to move them so up and to the left so you can still see the img
+	document.getElementById("turningSprite").style.left = offset[0]*-1 +"px";
+	document.getElementById("turningSprite").style.top = offset[1]*-1 +"px";
+
+	setTimeout(function(){
+		moveUntilAt(targetFrame);
+	}, 200)
+
 }
 
 
