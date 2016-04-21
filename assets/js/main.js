@@ -98,35 +98,60 @@
 	});
 
 document.onmousemove = handleMouseMove;
+document.onscroll = handleScroll;
 window.onresize = handleResize;
 
 function handleMouseMove(event) {
+	event = event || window.event; // IE-ism
   turnTowards(event.pageX)
 }
+
 function handleResize(event){
   turnTowards(0)
 }
 
-function turnTowards(xPos){
-  event = event || window.event; // IE-ism
+function handleScroll(event){
+	turnTowards(window.innerWidth/2 + 50)
+}
 
+var lastFrame = 0;
+var targetFrame;
+var TOTAL_FRAMES = 13;
+var ASPECTRATIO = .56295525494;
+
+function turnTowards(xPos){
   var percentWidth =  xPos / window.innerWidth
 
-  var totalFrames = 13;
-  var aspectRatio = .56295525494;
+  targetFrame = Math.floor(TOTAL_FRAMES * percentWidth);
 
-  var frame = Math.floor(totalFrames * percentWidth);
+	moveTowards(targetFrame)
+}
 
-  var offset = getOffSet({
-			'rows': 5,
-			'columns':3,
-			'width':window.innerWidth * 3,
-			'height':window.innerWidth * aspectRatio * 5
-			}, frame);
+function moveTowards(curTarget){
+	if (lastFrame === curTarget || curTarget !== targetFrame) {
+		return
+	}else{
+		if(lastFrame < curTarget){
+			lastFrame++
+		}else if(lastFrame > curTarget){
+			lastFrame--
+		}
 
-	// negative to move them so up and to the left so you can still see the img
-  document.getElementById("turningSprite").style.left = offset[0]*-1 +"px";
-  document.getElementById("turningSprite").style.top = offset[1]*-1 +"px";
+		var offset = getOffSet({
+				'rows': 5,
+				'columns':3,
+				'width':window.innerWidth * 3,
+				'height':window.innerWidth * ASPECTRATIO * 5
+			}, lastFrame);
+
+		// negative to move them so up and to the left so you can still see the img
+		document.getElementById("turningSprite").style.left = offset[0]*-1 +"px";
+		document.getElementById("turningSprite").style.top = offset[1]*-1 +"px";
+
+		setTimeout(function(){
+			moveTowards(targetFrame);
+		}, 500)
+	}
 }
 
 
