@@ -55,11 +55,13 @@
 				);
 			});
 
+		console.log($header.outerHeight());
+
 		// Scrolly.
 			$('.scrolly')
 				.scrolly({
-					speed: 1500,
-					offset: $header.outerHeight()
+					speed: 1000
+					// offset: 300
 				});
 
 
@@ -162,7 +164,7 @@ function moveUntilAt(curTarget){
 
 	setTimeout(function(){
 		moveUntilAt(targetFrame);
-	}, 200)
+	}, 100)
 
 }
 

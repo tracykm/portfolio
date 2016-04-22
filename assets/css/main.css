@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,600italic,800,800italic");
 
 /*
 	Spectral by HTML5 UP
@@ -17,6 +17,10 @@
 	}
 	ul.icons.major li a span:hover{
 		color: white;
+	}
+
+	#banner h2{
+		top: -2em;
 	}
 
 	#turningSprite{
@@ -1530,7 +1534,6 @@ section#banner {
 		letter-spacing: 0.225em;
 		line-height: 1em;
 		margin: 0 0 1em 0;
-		text-transform: uppercase;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -2316,7 +2319,6 @@ section#banner {
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
-		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -2798,8 +2800,9 @@ section#banner {
 				color: #a6e0db !important;
 			}
 
-			.wrapper.style1 .icon.major {
-				border-color: rgba(0, 0, 0, 0.125);
+			.wrapper.style1 .icon.major,  .icon.major a{
+				border-color: rgba(255,255,255,.1);
+				color: rgba(255,255,255,.6);;
 			}
 
 			.wrapper.style1 ul.alt li {
@@ -3267,7 +3270,6 @@ section#banner {
 					letter-spacing: 0.225em;
 					outline: 0;
 					text-decoration: none;
-					text-transform: uppercase;
 				}
 
 					@media screen and (max-width: 736px) {
@@ -3384,7 +3386,6 @@ section#banner {
 						font-size: 0.8em;
 						letter-spacing: 0.225em;
 						padding: 0 1.5em;
-						text-transform: uppercase;
 					}
 
 						#header nav > ul > li > a.menuToggle {
@@ -3509,7 +3510,6 @@ section#banner {
 
 		#banner p {
 			letter-spacing: 0.225em;
-			text-transform: uppercase;
 		}
 
 			#banner p a {
@@ -3542,7 +3542,6 @@ section#banner {
 			padding-left: 0.225em;
 			position: absolute;
 			text-align: center;
-			text-transform: uppercase;
 			width: 16em;
 			z-index: 1;
 		}
@@ -3710,7 +3709,6 @@ section#banner {
 		#main > header p {
 			color: inherit;
 			letter-spacing: 0.225em;
-			text-transform: uppercase;
 			top: 0;
 		}
 
@@ -3785,7 +3783,6 @@ section#banner {
 			letter-spacing: 0.225em;
 			list-style: none;
 			padding: 0;
-			text-transform: uppercase;
 		}
 
 			#footer .copyright li {
