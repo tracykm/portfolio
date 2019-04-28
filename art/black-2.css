@@ -1,0 +1,482 @@
+@charset "UTF-8";
+/* CSS Document */
+
+	*{
+		padding: 0px;
+		margin: 0px;	
+	}
+
+	body{
+		background-color: white ;
+		font-family: 'Century Gothic', sans-serif;
+		font-size: 15px;
+		color: black;
+	}
+
+	#main{
+		text-align: center;
+	}
+	
+
+	p{
+		line-height: 1.5em;
+		padding: .5em;
+	}
+
+	#wholepage{
+		padding: 5px;
+		margin-top: 25px;
+		background-color: white;
+	}
+
+	#homeImage{
+		padding: 50px 0
+	}
+
+
+	#wholepage{
+		width: 960px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	img { border: none; }
+	A:link {
+ 		COLOR: #606060;
+		text-decoration: none;
+	}
+	A:visited {
+ 		COLOR: #B0B0B0;
+		text-decoration: none;
+	}
+	A:hover {
+ 		COLOR: #003040;
+		text-decoration: none;
+		}
+
+
+/*  ------    ------  Header   ------   ------  */
+
+#header p{
+	height: 40px;
+	padding-bottom: 30px;
+}
+
+#header img{
+	position: relative;
+	left: -100px;
+}
+
+
+/*   ------    ------  Line Header   ------    ------  */
+
+.lineHeader{
+	font-size: 40px;
+	color: #999;
+	background-repeat:repeat-x;
+	background-position:center; 
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+
+.topHeader{
+	/*background: url("images/line.png");
+	background-repeat:repeat-x;*/
+
+	background-position:center; 
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 26px;
+	font-weight: light;
+}
+
+.topHeader h3{
+	margin: 0;
+	padding: 0;	
+}
+
+.topHeader .white{
+	background-color: white;
+	color: #444;
+	font-weight: light;
+-webkit-border-bottom-right-radius: 5px;
+-webkit-border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+-moz-border-radius-bottomleft: 5px;
+border-bottom-right-radius: 5px;
+border-bottom-left-radius: 5px;
+margin-bottom: 10px;
+	}
+
+.about #header{
+	margin-bottom: 10px;
+}
+
+/*   ------    ------  Navigation   ------    ------  */
+
+#topNav ul li ul li{
+	display: block;
+	text-align: left;
+	line-height: 2em;
+	font-size: 15px;
+}
+#topNav ul li ul li:hover{
+	background-color: #999;
+}
+#topNav ul li ul{
+	position: absolute;
+	top: 21px;
+	left: -6px;
+	display: none;
+}
+
+#topNav{
+
+	background-image: url('images/home/line-2.jpg');
+	padding: 30px;
+	width: 450px;
+	float: right;
+}
+
+	#header ul li{
+		display: inline;
+		font-size: 18px;
+		position: relative;
+	}
+
+	#header ul li a{
+		padding: 0 15px;
+	}
+	
+	#header ul{
+		text-align: right;
+	}
+
+	a.grow{
+		display: block;
+	    -webkit-transition: all 0.2s linear;
+       -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+         -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+	}
+
+	a.hover{
+		width: 300px;
+	}
+
+	.shrink{
+		text-decoration: underline;
+	}
+
+
+
+/*   ------    ------  Footer   ------    ------  */
+	
+	#header, #footer{
+	}
+
+	#footer{
+		margin: 10px 0px;
+		text-align: left;
+	}
+
+	#footer{
+		clear: both;
+		height: 1.8em;
+	}
+
+	#footer #copyright{
+		margin-top: -20px;
+		margin-left: 5px;
+	}
+
+	#next{
+		text-align: right;
+		margin: 0 5px;
+
+	}
+
+	#next a{
+
+		width: 124px;
+		padding: 4px 5px;
+
+		font-size: 18px;
+
+	}
+
+	
+	
+
+/*   ------    ------  Blocks   ------    ------  */
+	
+	#digPics{
+		margin-left: 0px
+	}
+	
+	#abouttext, #digPics{
+		color: #333;
+	}
+	
+	#videos{
+		text-align: center;
+	}
+
+
+	h2, h3{
+		color: #111;
+		margin: 10px 0;
+	}
+
+	h3{
+
+		font-size: 30px;
+	}
+
+	#homeTile:first-child{
+		padding-left: 0px;
+	}
+	#homeTile:last-child{
+		padding-right: 0px;
+	}
+
+	#homeTile{
+		background-color: black;
+		padding: 0 30px 0 10px;
+		float: left;
+		margin-bottom: 15px;
+	}
+
+	#homeTile p{
+		text-align: center;
+		background-color: white;
+		padding: 0 0 0 50px;
+
+	}
+
+	#homeTile a:link, #homeTile a:visited{
+		color: #111;
+	}
+
+
+	#homeTilesChunk{
+		margin: 10px 0;
+		clear: both;
+	}
+
+	#threedMax #animBlock{
+		float: right;
+
+	}
+
+	#mayaBlock{
+
+		width: 800px;
+	}
+
+	.clear{
+
+		clear: both;
+		margin-bottom: 20px;
+	}
+
+	h2{
+		margin: 4px 0;
+		text-align: center;
+		font-weight: normal;
+	}
+
+	#js #homeTile{
+		padding: 14px;
+	}
+
+	#videoTile{
+		float: left;
+		padding: 8px;
+	}
+
+	#crit #homeTile{
+		padding: 8px;
+	}
+
+	#main #homeTile p{
+		font-size: 100px;
+	}
+
+	#main h2{
+		background: url("images/lineTile.png");
+		background-repeat:repeat-x;
+		background-position:center; 
+	}
+
+	.white{
+		padding: 0 10px;
+		color: #444
+
+	}
+
+
+a.darken {
+    display: inline-block;
+    background: #111;
+    padding: 0;
+}
+
+/* fix for home page */
+#main a.darken{
+	display: block; 
+}
+
+a.darken img {
+    display: block;
+    
+    -webkit-transition: all 0.2s linear;
+       -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+         -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+}
+
+a.darken:hover img {
+    opacity: .5;
+            
+}
+
+
+/*   ------    ------  About Page   ------    ------  */
+
+#aboutPage p{
+	text-align: left;
+	color: #111;
+}
+
+#aboutPage img{
+	float: left;
+	padding: 0;
+	background-color: white;
+}
+
+div#abouttext{
+	width: 900px;
+	padding: 20px;
+}
+
+
+/*   ------    ------  thumbnails   ------    ------  */
+
+.thumb{
+	line-height: 0;
+	padding: 0px;
+    margin: 0px;
+	background-color: #111;
+	display: inline-block;
+    
+    
+}
+
+a.thumb:hover img {
+	cursor: pointer;
+    opacity: .2;
+    /*-webkit-transition: all 0.2s linear;
+       -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+         -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;*/
+}
+
+.caption{
+	color: #111;
+	text-align: left;
+}
+
+#videos #thumbs{
+	text-align: right;
+}
+
+/*   ------    ------  VideoPage   ------    ------  */
+
+.videoBlock{
+	margin: 20px auto;
+	width: 800px;
+
+}
+
+.videoBlock h2{
+	text-align: left;
+}
+
+.videoBlock iframe{
+	float: left;
+	padding: 0px 10px 20px 0;
+}
+
+.hidden{
+}
+
+#mobile{
+	width: 450px;
+	display: inline;
+	float: left;
+}
+
+#mobile iframe{
+	float: left;
+}
+
+
+#wholepage div#abouttext{
+	margin: 0px; !important;
+	padding: 0px;
+}
+
+#mobileText{
+	width: 175px;
+	float: right;
+	line-height: 1.5em;
+
+}
+
+#flashMiddle{
+	text-align: center;
+	width: 550px;
+	float: right;
+	margin-top: -21px;
+}
+
+#videos .description{
+	font-style: italic;
+}
+
+#ctl #homeTile{
+	padding: 0 5px;
+}
+
+
+
+#left{
+	float: left;
+}
+#wholepage #aboutPage #right{
+	float: right;
+	text-align: right;
+}
+
+#wholepage #aboutPage p.contact{
+	width: 200px;
+	padding-left: 0px;
+}
+
+.three .darken{
+	margin: 8px;
+}
+
+#art .thumbs{
+	margin: 6px;
+}
+
+#abouttext{
+	background-color: black;
+}
+

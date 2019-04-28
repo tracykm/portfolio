@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Meanie Genie</title>
+
+<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+<script src="MeanieGenie4.js"></script>
+<script src="Rock-Real_improve.js"></script>
+<script src="checkSolution.js"></script>
+
+<script>
+var canvas, stage, exportRoot, mainScale, plate, background, right, left, container, endMessage, specialRock;
+var rockSpacing = 80;
+
+var rocks=[]; // array of all rocks
+
+var leftScaleRocks = []; // array of rock numbers
+var rightScaleRocks = [];
+var rightScale_RealRocks = []; // array of the actual rock objects
+var leftScale_RealRocks = [];
+
+var tries = 0;
+var allowedTries = 2;
+var triesLeft = allowedTries;
+
+var levelType = "plus"; // is the jewel rock heavier or lighter this time
+
+var level = 1;
+var rightPath = 0;
+var dragged = null;
+var start = true; 
+
+function init() {
+
+	// set up
+	canvas = document.getElementById("canvas");
+	stage = new createjs.Stage(canvas);
+
+	exportRoot = new lib.MeanieGenie4();
+	exportRoot.background.alpha = 0;
+	
+
+	createjs.Ticker.setFPS(18);
+	createjs.Ticker.addEventListener("tick", stage);
+
+	// unneccasary left over code
+	background = new lib.background();
+	background.setTransform(383.9,256,1,1,0,0,0,344.9,274.1);
+	b_background = new lib.backbackground();
+	stage.addChild(b_background);
+	stage.addChild(background);	
+	stage.addChild(exportRoot);
+
+	// where we will add rocks
+	container = new createjs.Container();
+	stage.addChild(container);
+
+	// make sure these overlays are infront of rocks
+	endMessage = new lib.endMessage();
+	endMessage.setTransform(402,254.1,1,1,0,0,0,-4.4,9.7);
+	stage.addChild(endMessage);
+
+	stage.update();
+
+
+	// assign global variables
+	mainScale = exportRoot.leftScale;
+	right = mainScale.scaleSeatRight;
+	left = mainScale.scaleSeatLeft;
+	plate = exportRoot.plate;
+	right.numRocks = 0;
+	left.numRocks = 0;
+
+	// start with the mini screen shots on top hidden - they are revealed with each weigh
+	exportRoot.ScreenShot_1.visible=false;
+	exportRoot.ScreenShot_2.visible=false;
+
+
+
+	clickThrough();
+	addClickable();
+	addHover();
+	stage.enableMouseOver();
+}
+
+function addHover(){
+	exportRoot.ContinueBtn.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	exportRoot.Start.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	exportRoot.Hint.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	right.DropArea.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	left.DropArea.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	exportRoot.Warning.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	exportRoot.Weigh.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+	plate.onMouseOver = function(){
+		this.cursor = "pointer";
+	}
+}
+
+
+function clickThrough(){   // handles buttons and screens	
+	exportRoot.ContinueBtn.onPress = function(){
+		console.log("continue");
+		exportRoot.gotoAndStop("Game");
+	}
+	exportRoot.Start.onPress = function(){
+		console.log("start");
+		exportRoot.gotoAndStop(1);
+		if(start){
+		addRocks(9);
+		start=false;
+		}
+	}
+	exportRoot.Back.onPress = function(){
+		console.log("back");
+		if(level==1){
+			exportRoot.gotoAndStop("Level1");
+		}else if(level==2){
+			exportRoot.gotoAndStop("Level2");
+		}
+	}
+	exportRoot.Hint.onPress = function(){
+		if(specialRock){
+			var lastChar = String(specialRock.rock.RockNumber.text).slice(-1);
+			if(lastChar!="*"){
+				exportRoot.revealJewel.text = "hide jewel";
+				specialRock.rock.RockNumber.text += "*";
+				exportRoot.gotoAndStop("Game");
+				exportRoot.Warning.gotoAndStop("stoneMarked");
+			}else{
+				exportRoot.revealJewel.text = "reveal jewel";
+				specialRock.rock.RockNumber.text = String(specialRock.rock.RockNumber.text).slice(0,-1);
+			}
+			
+			if(arguments.callee.revealed){
+				specialRock.rock.RockNumber.text += "*"
+				arguments.callee.revealed = false;
+			}
+		}else{
+			alert("Can't")
+		}
+		
+		
+
+		
+	}
+
+	endMessage.NextLevel.onPress = function(){
+		console.log("next");
+		if(level==1){
+			level = 2;
+			reset(12,3);
+			var ran = Math.round(Math.random());
+			if(ran){
+				levelType = "minus";
+			}else{
+				levelType = "plus";
+			}
+		}else{
+			console.log("Finish");
+			exportRoot.gotoAndStop("Finish");
+			endMessage.gotoAndStop(0);
+					removeRocks();
+			exportRoot.ScreenShot_1.visible=false;
+			exportRoot.ScreenShot_2.visible=false;
+		}
+		
+	}
+	endMessage.TryAgain.onPress = function(){
+		console.log("tryAgain");
+		if(level==1){
+			level = 1;
+			reset(9,2);
+		}else if(level==2){
+			level = 2;
+			reset(12,3);
+		}
+		
+	}
+	endMessage.Finish.onPress = function(){
+		console.log("Finish");
+			exportRoot.gotoAndStop("Finish");
+			endMessage.gotoAndStop(0);
+					removeRocks();
+			exportRoot.ScreenShot_1.visible=false;
+			exportRoot.ScreenShot_2.visible=false;
+		
+	}
+	exportRoot.PlayAgain.onPress = function(){
+		console.log("PlayAgain");
+		level = 1;
+		reset(9,2);
+	}
+
+
+}
+
+
+function addClickable(){   // handles all other clickable
+	exportRoot.Weigh.onPress = function(){
+		weighScale();
+	}
+
+	left.DropArea.onPress = function(){
+		addRocksToScale(left);
+	}
+
+	right.DropArea.onPress = function(){
+		addRocksToScale(right);
+	}
+
+
+	// set rock down in lower screen
+
+	background.onPress = function(e){
+		setRocksDown(e);
+	}
+	exportRoot.Warning.onPress = function(){
+			exportRoot.Warning.gotoAndStop(0);
+	}
+
+
+	plate.onPress = function(){
+		testRock();
+	}
+
+}
+
+function setRocksDown(e){
+	var count = 0
+	for(var i=0; i < rocks.length; i++){
+		r = rocks[i];
+		if(r.selected){
+			container.addChild(r); // bump to front
+			count++;
+			r.x = e.stageX+count*rockSpacing/2-60;
+			r.y = e.stageY-15;
+			r.clicked();
+		}
+	}
+}
+
+function testRock(){
+	var first = null;
+	numRocksSelected = 0;
+
+	for(var i=0; i < rocks.length; i++){ // go through rocks to make sure only one is selected
+		r = rocks[i];
+		if(r.selected){
+			numRocksSelected ++;
+			if(numRocksSelected==1){
+				first = r;
+			}
+		}
+	}
+
+	if(numRocksSelected==1){
+		plate.addChild(first);
+		first.addRocktoScale(plate);
+		first.x=90;
+		first.y=20;
+		first.break();
+	}else{
+		exportRoot.Warning.gotoAndStop("ChooseOne");
+	}
+}
+
+function weighScale(){
+	var weigh = document.getElementById("weigh");
+	var leftNum = left.numRocks
+	var rightNum = right.numRocks
+	var warning = document.getElementById("warning");
+	var moveWarn = document.getElementById("moveWarning");
+
+	if((leftNum>0 || rightNum>0)){
+		if(triesLeft<1){ // if out of tries tell user
+			exportRoot.Warning.gotoAndStop("MakeChoice");
+		}else{ // weigh
+			tries++;
+		triesLeft = allowedTries - tries;
+
+		exportRoot.TriesLeft.text = "Tries Left: "+triesLeft;
+		var fall = "even"
+			if(leftNum > rightNum){
+				fall = "left"
+				mainScale.gotoAndPlay("rightFall");
+			}else if(rightNum > leftNum){
+				fall = "right"
+				mainScale.gotoAndPlay("leftFall");
+			}else{
+				fall = "even"
+				mainScale.gotoAndPlay("even");
+			}
+			recordScreenShot(fall);
+
+
+			// show the user where to put the rock
+			if(triesLeft==0){
+				function playArrow(){
+					exportRoot.plate.play();
+				}
+				setTimeout(playArrow,900);
+			}
+
+		}
+	}
+
+}
+
+
+function recordScreenShot(fall){
+
+	var leftNum = leftScaleRocks.length;
+	var rightNum = rightScaleRocks.length;
+
+
+	checkSolution(fall);
+
+	// recordScreenShot
+	if(tries<3){
+		if(tries==1){
+			var screenShot = exportRoot.ScreenShot_1;
+		}else if(tries==2){
+			var screenShot = exportRoot.ScreenShot_2;
+		}
+		screenShot.visible = true;
+
+		if(fall=="left"){
+			screenShot.gotoAndStop("leftFall");
+		}else if(fall=="right"){
+			screenShot.gotoAndStop("rightFall");
+		}else{
+			screenShot.gotoAndStop("even");
+		}
+
+	screenShot.leftNumbers.text = displayNumbers(leftScaleRocks);
+	screenShot.rightNumbers.text = displayNumbers(rightScaleRocks);
+	}
+}
+
+
+
+function displayNumbers(listOfRocks){
+	var screenNumbers = ""
+	var listLength = listOfRocks.length;
+	for(var i=0; i<listLength; i++){
+			if(listLength>3){
+				if((listLength-3)==i){
+					screenNumbers += "\n";
+				}
+			}else{
+				if(i==0){
+					screenNumbers += "\n";
+				}
+				
+			}
+			screenNumbers += listOfRocks[i]+" ";
+	}
+	return screenNumbers;
+}
+
+
+//add Rocks and their drag and interaction with scale
+function addRocks(totalRocks,plusMinus){
+
+	var r;
+	var type;
+	var smo;
+	var width = 550;
+    var numFirstRow = Math.round(totalRocks/2-.1);
+
+	var specialInt = Math.floor((Math.random()*totalRocks));
+	for(var i = 0; i < totalRocks; i++){
+		type = "regular"
+		if(i==specialInt){
+			type = "special";
+		}
+		if(i<numFirstRow){
+			var startPosition = (width - (numFirstRow-1)*rockSpacing)/2;
+			r = new Rock(startPosition+i*rockSpacing,400, type);
+			if(type == "special"){
+				specialRock = r;
+			}
+		}else{
+			r = new Rock((startPosition-rockSpacing/2)+(i-numFirstRow)*rockSpacing,450, type);
+			if(type == "special"){
+				specialRock = r;
+			}
+		}
+    
+    rocks.push(r);
+    container.addChild(r);
+
+    	// wrapper function to provide scope for the event handlers:
+    	(function(target) {
+				target.onPress = function(evt) {
+					target.clicked();
+
+				// remove rock from scale
+				if (target.onScale){
+					target.removeRockFromScale(parent);
+				}
+
+				// bump the target in front of it's siblings:
+				container.addChild(target);
+				var offset = {x:target.x-evt.stageX, y:target.y-evt.stageY};
+
+				// add a handler to the event object's onMouseMove callback
+				// this will be active until the user releases the mouse button:
+				evt.onMouseMove = function(ev) {
+					var newX = ev.stageX+offset.x;
+					var newY = ev.stageY+offset.y;
+					var distanceX = Math.abs(target.x -newX);
+					var distanceY = Math.abs(target.y -newY);
+					//console.log(distanceY);
+					if(distanceY>2){
+						dragged = target;
+						if(!target.onScale)
+						{
+							target.x = newX;
+							target.y = newY;
+						}
+					}
+				}
+
+
+				evt.onMouseUp = function(ev){
+					if(dragged){
+						
+						target.update();
+					}
+				}
+				}
+		})(r);
+	}
+	stage.update();
+}
+
+
+function addRocksToScale(myScale){
+	for(var i=0; i < rocks.length; i++){
+		r = rocks[i];
+		if(r.selected){
+			//r.rock.RockNumber.text = "*"
+			r.addRocktoScale(myScale); /* add it to scale */
+		}
+	}
+}
+
+
+function pressedScale(myScale){
+
+	// get right list of rocks
+	var listRocks = leftScaleRocks;
+	if(myScale==right){
+		listRocks = rightScaleRocks;
+	}
+
+	if(!rockSelected()){ /* if nothing is selected */
+		
+		for(var i=0; i < listRocks.length; i++){
+			r = listRocks[i];
+			if(r.parent==myScale){ // find all rocks on scale
+				r.clicked();	// and select them 
+				r.removeRockFromScale(myScale);
+
+				if(myScale==right){
+					rightScaleRocks = [];
+				}else if(myScale==left){
+					leftScaleRocks = [];
+				}
+
+			}
+
+		}
+	}else{ /* if something is selected */
+		for(var i=0; i < rocks.length; i++){
+			r = rocks[i];
+			if(r.selected){
+				r.addRocktoScale(myScale); /* add it to scale */
+			}
+		}
+	}
+}
+
+
+
+function removeRocks(){
+
+	for(var i = 0; i < rocks.length; i++){
+		r = rocks[i];
+		container.removeChild(r);
+		exportRoot.removeChild(r);
+		exportRoot.plate.removeChild(r);
+		left.removeChild(r);
+		right.removeChild(r);
+		stage.update();
+	}
+	rocks = [];
+}
+
+
+
+function reset(newNumRocks, newNumTries){
+		removeRocks();
+		if(level==2){
+			exportRoot.gotoAndStop("Level2");
+		}else if(level==1){
+			exportRoot.gotoAndStop("Level1");
+		}
+		addRocks(newNumRocks,"plus");
+
+		allowedTries=newNumTries;
+		tries=0;
+		triesLeft = allowedTries;
+		exportRoot.TriesLeft.text = "Tries Left: "+triesLeft;
+		right.numRocks = 0;
+		left.numRocks = 0;
+		exportRoot.ScreenShot_1.visible=false;
+		exportRoot.ScreenShot_2.visible=false;
+		rightScaleRocks = [];
+		leftScaleRocks = [];
+		rightScale_RealRocks = [];
+		leftScale_RealRocks = [];
+		endMessage.gotoAndStop(0);
+		plate.gotoAndStop(0);
+		rightPath = 0;
+		exportRoot.revealJewel.text = "reveal jewel";
+}
+
+
+
+function rockSelected(){
+	for(var i=0; i < rocks.length; i++){
+			if(rocks[i].selected){
+				return true		
+			}
+		}
+	return false
+}
+
+
+
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<canvas id="canvas" width="800" height="500" style="background-color:#FFFFFF"></canvas>
+</body>
+</html>

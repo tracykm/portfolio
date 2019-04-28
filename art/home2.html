@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Tracy Mullen</title>
+  <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="reset.css" />
+<link type="text/css" rel="stylesheet" href="black.css" />
+
+
+</head>
+<body>
+	<div id="wholepage">
+	<div id="header">
+<p>
+	<a href="home.html"><img src="images/home/logo-small2.jpg" alt="Logo" /></a>
+</p>
+<nav id="topNav">
+        <ul>
+            <li><a href="home.html">Home</a> | </li>
+            <li><a href="gallery.html">Art</a> | </li>
+            <li><a href="design.html">Design</a> | </li>
+            <li><a href="video.html">Video</a> | </li>
+            <li><a href="about.html">About</a> </li>
+        </ul>
+</nav>
+	</div> <!--end of header-->
+
+	<div id="main">
+
+<br/>
+		<div id="homeTilesChunk">
+
+
+			<a href="art-3rd.html" class="grow">
+				<div id="homeTile" style="padding-left:500px;padding-right:240px;">
+					<p><span class="white">art</span></p>
+				</div>
+			</a>
+
+
+			<a href="video.html" class="grow">
+				<div id="homeTile" style="padding-left:300px;padding-right:345px;">
+					<p><span class="white">video</span></p>
+				</div>
+			</a>
+
+
+			<a href="work.html" class="grow">
+					<div id="homeTile" style="padding-left:550px;padding-right:110px;">
+				<p><span class="white">work</span></p>
+				</div>
+			</a>
+
+		</div>
+
+		<div class="clear"> <div>
+			<br/><br/>
+
+	<h3 class="lineheader"> Featured </h3>
+
+
+
+
+<div id="demoreel" class="videoBlock" style="display: block">
+    <iframe width="650" height="395" src="http://www.youtube.com/embed/GVEYjxbLJ9k" frameborder="0" allowfullscreen></iframe>
+        <div class="caption">
+    <div class="caption">
+
+        <h2>Arlo and Julie Intro</h2><p>
+            2013 | Animation | 0:46 seconds - After Effects</p>
+            <p class="description">
+            An intro for a indie film.</p><p>
+            <i>Arlo and Julie</i> is an independent movie currently in post-production. It’s a comedy about a neurotic couple who become obsessed with mysterious puzzles pieces arriving in the mail.</p>
+        </p>
+    </div>
+</div>
+
+
+
+	</div> <!--end of main-->
+<div id="footer">
+  <div id="next"><a href="doodles.html">Next ></a></div>
+  <div id="copyright">copyright &copy; Tracy Mullen 2013</div>
+</div><!--end of footer-->
+
+	</div> <!--end of wholepage-->
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/portfolio.js"></script>
+
+<script type="text/javascript">
+
+	var tile = $("a #homeTile");
+	tile.mouseover(function(){
+		$(this).stop().animate({"padding-left": "0"}, 1000);
+	});
+	tile.mouseout(function(){
+		$(this).stop().animate({"padding-left": "300px"}, 1000);
+	});
+
+</script>
+
+
+</body>
+
+</html>
