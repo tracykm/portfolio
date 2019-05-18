@@ -47,6 +47,8 @@ p {
 
 .caption {
   margin-top: 1em;
+  width: 330px;
+  float: right;
 }
 
 div#player {

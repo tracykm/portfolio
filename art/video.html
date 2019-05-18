@@ -66,6 +66,10 @@
             ><img src="images/video/thumb-grandma.jpg" title="Jeannine"
           /></a>
 
+          <a rel="roy" class="thumb"
+            ><img src="images/video/thumb-grandpa.jpg" title="Roy"
+          /></a>
+
           <a rel="waterSprites" class="thumb"
             ><img
               src="images/video/thumb-waterSprites.jpg"
@@ -298,6 +302,20 @@
           </div>
         </div>
 
+        <div id="roy" class="videoBlock">
+          <!--Roy movie-->
+          <div class="caption">
+            <h2>Roy William Keenan</h2>
+            <p>
+              2017 | Film and Video | 22:28 minutes - Premiere
+            </p>
+            <p class="description">
+              A documentary about my grandfather.
+            </p>
+            <p></p>
+          </div>
+        </div>
+
         <div id="ImpactFees" class="videoBlock">
           <div class="caption">
             <h2>Impact Fees</h2>
@@ -418,6 +436,13 @@
         if (videoTitle == "#grandma") {
           $(videoTitle).prepend(
             '<iframe width="650" height="395" src="http://www.youtube.com/embed/KQzxGgvRIb4" frameborder="0" allowfullscreen></iframe>'
+          );
+          $(videoTitle).addClass("shown");
+        }
+
+        if (videoTitle == "#roy") {
+          $(videoTitle).prepend(
+            '<iframe width="672" height="378" src="https://www.youtube.com/embed/cRxnKHKie6M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
           );
           $(videoTitle).addClass("shown");
         }
