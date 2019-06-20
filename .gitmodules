@@ -1,0 +1,3 @@
+[submodule "zombies-vs-unicorns"]
+	path = zombies-vs-unicorns
+	url = git@github.com:tracykm/zombies-vs-unicorns.git
