@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 190.7 95.4" style="enable-background:new 0 0 190.7 95.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F1F2F2;}
+	.st1{fill:#DCE6E8;}
+	.st2{fill:#2B2F33;}
+	.st3{fill:#181B1D;}
+	.st4{fill:#29768F;}
+	.st5{fill:none;stroke:#29768F;stroke-width:4;stroke-miterlimit:10;}
+	.st6{fill:#B6C7D9;}
+	.st7{fill:#F58521;}
+	.st8{fill:none;stroke:#F58521;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st9{fill:#0E97A3;}
+	.st10{fill:none;stroke:#F58521;stroke-width:3;stroke-miterlimit:10;}
+</style>
+<rect x="95.4" class="st0" width="95.4" height="95.4"/>
+<polygon class="st1" points="134.7,71.6 158.5,95.3 190.7,95.4 190.7,49.5 153.3,12.1 143.1,20.6 "/>
+<rect x="0" y="0" class="st2" width="95.4" height="95.4"/>
+<polygon class="st3" points="32.2,67 60.5,95.4 95.4,95.4 95.4,55.4 75.6,34.7 70.9,34.1 64.7,27.3 "/>
+<path class="st1" d="M42,68h-7c-2.4,0-4.3-1.9-4.3-4.3V27.3H42V68z"/>
+<path class="st4" d="M60.4,68h-7.1V27.3h11.3v36.4C64.7,66.1,62.8,68,60.4,68z"/>
+<circle class="st5" cx="69.3" cy="40.4" r="6.3"/>
+<rect x="37.9" y="27.3" class="st6" width="19.6" height="40.7"/>
+<polygon class="st7" points="52.5,48.2 42.9,48.2 42.9,37.9 47.7,34.7 52.5,37.9 "/>
+<line class="st8" x1="47.7" y1="27.3" x2="47.7" y2="37.4"/>
+<g>
+	<path class="st4" d="M147.8,73.3h-9.5c-2.5,0-4.5-1.9-4.7-4.4L131.2,34h23.7l-2.4,34.9C152.3,71.4,150.3,73.3,147.8,73.3z"/>
+	<path class="st9" d="M143.1,73.3h-4.7c-2.5,0-4.5-1.9-4.7-4.4L131.2,34h11.9"/>
+	<path class="st10" d="M143.1,29.2v-8.6c0-1.9,1.2-3.6,3.1-4.2l6.9-2.3"/>
+	<polygon class="st7" points="154.6,39 132.3,50 133.4,65.1 153.9,48.6 	"/>
+	<path class="st4" d="M151.9,28.6v-2.9h-17.6v2.9h-1.5c-2.1,0-3.8,1.7-3.8,3.8v0h28.3v0c0-2.1-1.7-3.8-3.8-3.8H151.9z"/>
+	<path class="st9" d="M143.1,25.9h-8.8v2.9h-1.5c-2.1,0-3.8,1.7-3.8,3.8v0h14.2"/>
+</g>
+</svg>
