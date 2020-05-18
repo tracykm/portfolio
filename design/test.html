@@ -1,0 +1,46 @@
+<html>
+  <form id="form">
+    <input placeholder="$" id="price" type="number" step="0.01" />
+    <br />
+    <input placeholder="num" id="num" type="number" min="0" max="100" />
+    <br />
+    <input id="v" min="20" type="number" />
+    <input id="p" min="1" max="100" type="number" />
+    <br />
+    <button>Submit</button>
+  </form>
+
+  <div id="output"></div>
+  <br />
+  <div id="output2"></div>
+  <style>
+    input,
+    div {
+      font-size: 36px;
+    }
+  </style>
+
+  <script>
+    document.getElementById('form').onsubmit = (e) => {
+      e.preventDefault()
+
+      output =
+        Number(document.getElementById('price').value) /
+        ((Number(document.getElementById('v').value) *
+          Number(document.getElementById('num').value)) /
+          500)
+      document.getElementById('output').innerHTML =
+        '$' + Math.round(output * 100) / 100
+
+      output2 =
+        Number(document.getElementById('price').value) /
+        ((Number(document.getElementById('p').value) *
+          Number(document.getElementById('num').value)) /
+          25)
+      if (output2 && output2 < 10000000) {
+        document.getElementById('output2').innerHTML =
+          'p $' + Math.round(output2 * 100) / 100
+      }
+    }
+  </script>
+</html>
