@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--  ***  Ideal Gas Law Simulation *** -->
+<html>
+<head>
+	<LINK REL=StyleSheet HREF="style3.css" TYPE="text/css" MEDIA=screen>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+	<script type="text/javascript" src="pause.js"></script>
+	<script type="text/javascript" src="myscript.js"></script>
+</head>
+<body>
+	<div id="mainContent">
+
+		<div id="container">
+			<img src="img/containerBack.png">
+			<a href="#" id="top"><img src="img/top.png"></a>
+			<span id="refresh">  <img src="img/containerFront.png" id="frontC">  </span>
+			<span id="thermometer"><img src="img/thermometer.png"><div id="redLine"></div></span>
+		</div>
+
+		<div id="pipes">
+			<img src="img/pipes.png">
+			<img src="img/redDial.png" id="spinner">
+			<a href="#" id="clickValve"><img src="img/valve2.png" class="valve"><img src="img/lever.png" id="lever"><img src="img/leverFlipped.png" id="leverF"></a>
+		</div>
+
+		<div id="pump">
+			<p id="noGas">No Gas Selected</p>
+			<img src="img/pumpBottom.png" id="pumpBottom">  <a href="#" id="pumpTop"><img src="img/pumpTop2.png"></a>
+		</div>
+
+		<div id="gasArea">
+			<img src="img/gasPipes.png">
+			<a href="#" id="gasA"><p>Gas A</p><img src="img/gasBlock2.png" class="gasImg"><img src="img/gasBlock2-c.png" class="gasImg-c"><img src="img/particleA.png" class="demoParticle"></a>
+			<a href="#" id="gasB"><p>Gas B</p><img src="img/gasBlock2.png" class="gasImg"><img src="img/gasBlock2-c.png" class="gasImg-c"><img src="img/particleB.png" class="demoParticle"></a>
+		</div>
+
+		<div id="ventArea">
+			<img src="img/vent.png"> 
+			<div class="wave cool"></div>
+			<div class="wave cool"></div>
+			<div class="wave cool"></div>
+			<div class="wave heat"></div>
+			<div class="wave heat"></div>
+			<div class="wave heat"></div>
+		</div>
+
+		<div id="tempButtons">
+			<a href="#" id="hot"><img src="img/tempButtonImg2.png" class="buttonT"><img src="img/tempButtonImg2-c.png" class="buttonT-c"><p>Heat</p></a>
+			<a href="#" id="cold"><img src="img/tempButtonImg2.png" class="buttonT"><img src="img/tempButtonImg2-c.png" class="buttonT-c"><p>Cool</p></a>
+			<a href="#" id="off"><img src="img/tempButtonImg2.png" class="buttonT"><img src="img/tempButtonImg2-c.png" class="buttonT-c"><p>Off</p></a>
+		</div>
+
+
+		<div id="text">
+			<p>Amount of Gas: <span id="amount">0</span> moles</p>
+		</div>
+
+		<div id="keArea">
+			<h3>Avg KE (kJ/mol)</h3><p>A: <span id="keA">0</span></p>
+			<p>B: <span id="keB">0</span></p>
+		</div>
+
+		<div id="rmsArea">
+			<h3>RMS (m/s)</h3><p> A: <span id="rmsA"> -- </span></p>
+			<p>B: <span id="rmsB">   -- </span></p>
+		</div>
+
+		<div id="seperateText">
+
+			<div id="pressureArea">
+					<h3>Pressure:</h3>
+					<span class="pressure">1</span> atm
+			</div>
+
+			<div id="volumeArea">
+				<img src="img/bubbleV.png" id="unlockedBubble">  <img src="img/bubbleV_dark.png" id="lockedBubble">
+				<a href="#" id="vLock">  
+					<img src="img/lock2.png" class="lock">  <img src="img/unlock2.png" class="unlock"></a>
+				<div id="volumeText"><h3>Volume: </h3><span class="volume">0</span> L </div>
+				<a href="#" id="up"><img src="img/upArrow2.png"><img src="img/upArrow2-c.png" class="arrowClicked"></a> <a href="#" id="down"><img src="img/downArrow2.png"><img src="img/downArrow2-c.png" class="arrowClicked"></a>
+			</div>
+
+			<div id="temperatureArea"><h3>Temperature:</h3><span class="temperature">0</span> K</div>
+		</div>
+
+
+	</div>
+
+</body>
+</html>
